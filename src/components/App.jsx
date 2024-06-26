@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from '/src/assets/react.svg'
-import viteLogo from '/src/'
-import '../src/App.css'
+import { Route, Routes } from "react-router-dom";
+import { useState, lazy, Suspense } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Navigation from "../components/Navigation/Navigation.jsx";
+import Loader from "../components/Loader/Loader.jsx";
+
+const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
+const MoviesPage = lazy(() => import("../pages/MoviesPage/MoviesPage.jsx"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
+const MovieDetailsPage = lazy(() =>
+  import("../pages/MovieDetailsPage/ MovieDetailsPage.jsx")
+);
+const Review = lazy(() =>
+  import("../components/MovieReviews/MovieReviews.jsx")
+);
+const MovieCast = lazy(() => import("../components/MovieCast/MovieCast.jsx"));
+
+// import css from "./App.module.css";
+
+export default function App() {
+  const [loading, setLoading] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noopener">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Navigation />
+      {loading && <Loader />}
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="actors" element={<MovieCast />} />
+            <Route path="reviews" element={<Review />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
 }
-
-export default App
