@@ -7,22 +7,23 @@ const getLinkClass = ({ isActive }) => {
 };
 
 export default function Navigation() {
+  
     return (
-      <div className={css.div}>
+      <header className={css.header}>
         <nav>
           <ul className={css.container}>
             <li>
               <NavLink to="/" className={getLinkClass}>
-                Home Page
+                Home
               </NavLink>
             </li>
             <li>
               <NavLink to="/movies" className={getLinkClass}>
-                Movies Page
+                Movies
               </NavLink>
             </li>
           </ul>
         </nav>
-      </div>
+      </header>
     );
 }

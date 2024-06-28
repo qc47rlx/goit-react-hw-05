@@ -42,7 +42,7 @@ export default function MovieDetailsPage() {
   
   return (
     <div className={css.page}>
-      <NavLink to={goBack.current} className={css.goto}> Go back </NavLink>
+      <NavLink to={goBack.current} className={css.backbtn}> Go back </NavLink>
       {error && <ErrorMessage />}
       {details && <MovieCard details={details} />}
       <ul>

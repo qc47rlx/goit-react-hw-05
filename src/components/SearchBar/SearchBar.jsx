@@ -9,7 +9,7 @@ export default function SearchBar({ onSearch }) {
     const searchMovie = form.elements.searchMovie.value;
 
     if (searchMovie.trim() === "") {
-      toast("Please fill in search folder", {
+      toast("Ooops! You haven't typed anything...", {
         style: {
           color: "red",
         },
@@ -30,10 +30,10 @@ export default function SearchBar({ onSearch }) {
           name="searchMovie"
           autoComplete="off"
           autoFocus
-          placeholder="Search movies"
+          placeholder="Type something..."
         />
         <button className={css.btn} type="submit">
-          Search
+          Find!
         </button>
         <Toaster />
       </form>

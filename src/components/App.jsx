@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useState, lazy, Suspense } from "react";
+import { Suspense, lazy } from "react";
 
 import Navigation from "../components/Navigation/Navigation.jsx";
 import Loader from "../components/Loader/Loader.jsx";
@@ -18,12 +18,11 @@ const MovieCast = lazy(() => import("../components/MovieCast/MovieCast.jsx"));
 // import css from "./App.module.css";
 
 export default function App() {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   return (
     <div>
       <Navigation />
-      {loading && <Loader />}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />

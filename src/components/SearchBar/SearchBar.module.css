@@ -5,7 +5,7 @@
 
 .form {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     padding: 10px;
     gap: 10px;
 }
@@ -25,10 +25,15 @@
     display: flex;
     border: 1px solid black;
     border-radius: 8px;
-    background-color: rgb(78, 78, 78);
-    color: white;
+    background-color: rgb(0, 0, 0);
+    color: #7a272f;
     padding: 10px;
     font-weight: 500;
     font-size: medium;
     justify-content: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: white;
 }
